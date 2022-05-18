@@ -17,6 +17,7 @@ if($link === false){
 ?>
 <!DOCTYPE html>
 <head>
+    <style type="text/css">.disclaimer { display: none; }</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--©2022 Yoga Raditya Nala
     github.com/lycusfelicius-->
@@ -112,6 +113,9 @@ if($link === false){
             $date = $row['date'];
             $id = $row['id'];
             $total_resp = $row['total_resp'];
+            if ($total_resp == "") {
+                $total_resp = "Belum Ada";
+            }
             echo '
             <div class="card mb-3 w-100 rounded shadow">
             <div class="card-body kiri-margin">

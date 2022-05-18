@@ -1,9 +1,9 @@
 <?php
 
 $db_host = "localhost";
-$db_user = "";
-$db_pass = "";
-$db_name = "forum";
+$db_user = "id18794961_root";
+$db_pass = "dJzeU5u1q?gE|kbm";
+$db_name = "id18794961_forum";
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 

@@ -12,6 +12,7 @@ $user_id = $row['id'];
 ?>
 <!DOCTYPE html>
 <head>
+    <style type="text/css">.disclaimer { display: none; }</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--©2022 Yoga Raditya Nala
     github.com/lycusfelicius-->

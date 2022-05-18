@@ -1,32 +1,10 @@
 <?php
-require_once("config.php");
-?>
-<!DOCTYPE html>
-<html style="background-color: #292c2c;">
-<head>
-  
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="language" content="English">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   <script src="js/signup.js"></script>
-   <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body style="background-color: #292c2c;">
-<div class="card fly-margin shadow rounded text-center mx-auto d-flex" style="width: 85%; height: 100%;">
-<div class="card-body">
-<div class="text-center">
-<main class="form-signin fly-margin">
-  <form action="" method="POST" class="needs-validation" novalidate>
-    <img class="mb-4" src="logo.png" alt="" width="100">
-    <h3 class="h3 mb-3 fw-normal">Daftar Time Talk</h1>
-
-<?php
+require_once("config.php");    
+$userfail = "0";
+$pwdfail = "0";
 if(isset($_POST['register'])){
-    if ($_POST["password"] ==$_POST["con_password"]) {
+
+    if ($_POST["password"] == $_POST["con_password"]) {
     // filter data yang diinputkan
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     // enkripsi password
@@ -60,19 +38,49 @@ if(isset($_POST['register'])){
 
     // jika query simpan berhasil, maka user sudah terdaftar
     // maka alihkan ke halaman login
-    if($saved) header("Location: login.php?success=true");
+    if($saved) header("Location: masuk.php?success=true");
 } else {
-    echo '<div class="alert alert-danger text-center" role="alert">
-<strong>Pendaftaran Gagal!</strong><br> Email atau Username Telah Digunakan
-</div>';
+ $userfail = "1";
 }
 } else {
+    $pwdfail = "1";
+}
+}
+
+?>
+<!DOCTYPE html>
+<html style="background-color: #292c2c;">
+<head>
+  <style type="text/css">.disclaimer { display: none; }</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="language" content="English">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script src="js/signup.js"></script>
+   <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body style="background-color: #292c2c;">
+<div class="card fly-margin shadow rounded text-center mx-auto d-flex" style="width: 85%; height: 100%;">
+<div class="card-body">
+<div class="text-center">
+<main class="form-signin fly-margin">
+  <form action="" method="POST" class="needs-validation" novalidate>
+    <img class="mb-4" src="logo.png" alt="" width="100">
+    <h3 class="h3 mb-3 fw-normal">Daftar Time Talk</h1>
+
+<?php
+if ($userfail == "1") {
+        echo '<div class="alert alert-danger text-center" role="alert">
+<strong>Pendaftaran Gagal!</strong><br> Email atau Username Telah Digunakan
+</div>';
+} else if ($pwdfail == "1") {
     echo '<div class="alert alert-danger text-center" role="alert">
 <strong>Pendaftaran Gagal!</strong> Password tidak sesuai
 </div>';
 }
-}
-
 ?>
      <div class="form-floating">
       <input name="username" type="text" class="form-control" id="username" autocomplete="off" placeholder="Username" required>
@@ -103,8 +111,8 @@ if(isset($_POST['register'])){
     </div>
     </div>
     <br>
-    <button class="btn btn-primary" name="register" type="submit">Daftar</button><br><br>
-    <a href="login.php">Sudah punya akun? login disini!</a>
+    <button type="submit" name="register" class="btn btn-primary btn-block">Daftar</button><br><br>
+    <a href="masuk.php">Sudah punya akun? login disini!</a>
     <p class="mt-5 mb-3 text-muted">© 2022</p>
   </form>
 </main>

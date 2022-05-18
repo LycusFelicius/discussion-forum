@@ -74,7 +74,8 @@ if($link === false){
   </div>
 </nav>
 <div class="container" style="padding-top: 80px;">
-        <div class="col-sm-8">
+        <div class="body">
+            <div class="card-body fly-margin">
             <br>
               <h4>Profil dan Statistik</h4>
               <br>
@@ -98,6 +99,7 @@ if($link === false){
               ?>
               <br>
               <a href="edit-user.php" class="btn btn-primary">Edit Detail</a>
+    </div>
     </div>
 </div>
 <footer class="py-3 my-4">
